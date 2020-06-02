@@ -1,0 +1,32 @@
+Some RLE type compression
+
+Header (4 bytes): Unknown (Possibly related to the decompressed data size)
+
+Then, the image data, which consists in several 5 bytes blocks. It ends when encountering a block filled with 0s, or when the end of file is reached
+
+For each 5 bytes block:
+
+byte 0: number of pixels using the color described in the block
+byte 1-3: color in RGB format
+byte 4: always 0x80, possibly related to the alpha channel
+
+For example, this data
+05 FF FF FF 80 08 00 00 00 80
+will be decompressed as 5 white pixels (1st block) followed by 8 black pixels (2nd block)
+
+Notes: 
+It should be linked to some map data, as the image data is split into several parts:
+
+each part consumes image_part_width*image_part_height pixels from the decompressed data
+(image_part_width, image_part_height, image_part_xpos, image_part_ypos)
+
+For both files provided those parts are:
+(256,256,0,0)
+(256,256,256,0)
+(128,256,512,0)
+(256,128,0,256)
+(256,128,256,256)
+(128,128,512,256)
+(256,64,0,384)
+(256,64,256,384)
+(128,64,512,384)
