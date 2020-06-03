@@ -11,7 +11,7 @@ if len(arg)>=3:
     src = arg[1]
 
     # Path to the destination
-    src = arg[2]
+    dst = arg[2]
 
     with open(src, "rb") as file:
         data = file.read()
