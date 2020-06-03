@@ -23,7 +23,7 @@ if len(arg)>=3:
     off = 4
 
     # While the block is not filled with 0s and the EOF is not reached
-    while data[off]!=0 and off<len(data):
+    while data[off:off+5]!=b'\x00\x00\x00\x00\x00' and off+5<=len(data):
         # Add (byte 1) pixels with color specified by (byte1-4) to the image data
         img_data.extend([data[off+1:off+4]]*data[off])
         
