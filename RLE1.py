@@ -14,9 +14,9 @@ if len(arg)>=3:
     src = arg[2]
 
     with open(src, "rb") as file:
-    data = file.read()
-    file.close()
-
+        data = file.read()
+        file.close()
+    
     img_data = []
 
     # Start after the header
